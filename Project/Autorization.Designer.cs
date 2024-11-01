@@ -40,6 +40,8 @@
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.AutorizeBtn = new System.Windows.Forms.Button();
+            this.IdDeviceTextBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -130,18 +132,38 @@
             // AutorizeBtn
             // 
             this.AutorizeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AutorizeBtn.Location = new System.Drawing.Point(173, 477);
+            this.AutorizeBtn.Location = new System.Drawing.Point(175, 560);
             this.AutorizeBtn.Name = "AutorizeBtn";
             this.AutorizeBtn.Size = new System.Drawing.Size(208, 50);
             this.AutorizeBtn.TabIndex = 10;
             this.AutorizeBtn.Text = "Зарегистрироваться";
             this.AutorizeBtn.UseVisualStyleBackColor = true;
+            this.AutorizeBtn.Click += new System.EventHandler(this.AutorizeBtn_Click);
+            // 
+            // IdDeviceTextBox
+            // 
+            this.IdDeviceTextBox.Location = new System.Drawing.Point(149, 511);
+            this.IdDeviceTextBox.Name = "IdDeviceTextBox";
+            this.IdDeviceTextBox.Size = new System.Drawing.Size(255, 22);
+            this.IdDeviceTextBox.TabIndex = 12;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(188, 479);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(185, 29);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "ID компьютера";
             // 
             // Autorization
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(565, 564);
+            this.ClientSize = new System.Drawing.Size(565, 622);
+            this.Controls.Add(this.IdDeviceTextBox);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.AutorizeBtn);
             this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.label5);
@@ -158,6 +180,7 @@
             this.MaximizeBox = false;
             this.Name = "Autorization";
             this.Text = "Autorization";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Autorization_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,5 +199,7 @@
         private System.Windows.Forms.TextBox PasswordTextBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button AutorizeBtn;
+        private System.Windows.Forms.TextBox IdDeviceTextBox;
+        private System.Windows.Forms.Label label6;
     }
 }

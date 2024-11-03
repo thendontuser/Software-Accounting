@@ -24,6 +24,11 @@ namespace Software_Accounting_Client_
             if (SurnameTextBox.Text.Length != 0 && NameTextBox.Text.Length != 0 && MiddlenameTextBox.Text.Length != 0 && RoleTextBox.Text.Length != 0 && 
                 IdDeviceTextBox.Text.Length != 0 && PasswordTextBox.Text.Length != 0)
             {
+                if (!string.Equals(RoleTextBox.Text.ToLower(), "user") && !string.Equals(RoleTextBox.Text.ToLower(), "admin"))
+                {
+                    MessageBox.Show("Поле \"Роль\" должно содеражть значение \"user/admin\"");
+                    return null;
+                }
                 User user = new User();
                 user.Surname = SurnameTextBox.Text;
                 user.Name = NameTextBox.Text;

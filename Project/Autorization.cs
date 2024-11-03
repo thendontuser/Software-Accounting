@@ -47,7 +47,7 @@ namespace Software_Accounting_Client_
 
             if (DataBase.Connect() == -1)
             {
-                MessageBox.Show("Ошибка подключения");
+                return;
             }
 
             User user = GetUser();

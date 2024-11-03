@@ -1,6 +1,6 @@
 ﻿namespace Software_Accounting_Client_
 {
-    partial class SoftwareData
+    partial class DeveloperData
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SoftwareData));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeveloperData));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -40,22 +40,22 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(909, 503);
+            this.dataGridView1.Size = new System.Drawing.Size(893, 503);
             this.dataGridView1.TabIndex = 0;
             // 
-            // SoftwareData
+            // DeveloperData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(933, 527);
+            this.ClientSize = new System.Drawing.Size(917, 527);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimizeBox = false;
-            this.Name = "SoftwareData";
-            this.Text = "Программное обеспечение";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SoftwareData_FormClosed);
-            this.Load += new System.EventHandler(this.SoftwareData_Load);
+            this.MaximizeBox = false;
+            this.Name = "DeveloperData";
+            this.Text = "Разработчики";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DeveloperData_FormClosed);
+            this.Load += new System.EventHandler(this.DeveloperData_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

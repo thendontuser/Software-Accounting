@@ -104,6 +104,28 @@ namespace Software_Accounting_Client_
         }
 
         /// <summary>
+        /// Получает все записи в указанной таблице
+        /// </summary>
+        /// <param name="tableName">Название таблицы</param>
+        /// <returns>DataSet</returns>
+        public DataSet GetTable(string tableName)
+        {
+            string sql = $"SELECT * FROM \"{tableName}\";";
+            try
+            {
+                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(sql, ConnectionString);
+                DataSet dataSet = new DataSet();
+                adapter.Fill(dataSet);
+                return dataSet;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Закрывает соединение с базой данных
         /// </summary>
         public void Disconnect()

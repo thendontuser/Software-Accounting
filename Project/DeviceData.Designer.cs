@@ -54,6 +54,8 @@
             this.MaximizeBox = false;
             this.Name = "DeviceData";
             this.Text = "Компьютеры";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DeviceData_FormClosed);
+            this.Load += new System.EventHandler(this.DeviceData_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

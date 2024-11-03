@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace Software_Accounting_Client_
 {
-    public partial class SoftwareData : Form
+    public partial class DeveloperData : Form
     {
-        DataBase DataBase;
+        private DataBase DataBase;
 
-        public SoftwareData()
+        public DeveloperData()
         {
             InitializeComponent();
         }
 
-        private void SoftwareData_Load(object sender, EventArgs e)
+        private void DeveloperData_Load(object sender, EventArgs e)
         {
             DataBase = new DataBase(DBSettings.ConnsectionString);
 
@@ -29,10 +29,10 @@ namespace Software_Accounting_Client_
             }
 
             dataGridView1.AutoGenerateColumns = true;
-            dataGridView1.DataSource = DataBase.GetTable("Software").Tables[0];
+            dataGridView1.DataSource = DataBase.GetTable("Developer").Tables[0];
         }
 
-        private void SoftwareData_FormClosed(object sender, FormClosedEventArgs e)
+        private void DeveloperData_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (DataBase != null)
             {

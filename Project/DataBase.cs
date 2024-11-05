@@ -126,6 +126,28 @@ namespace Software_Accounting_Client_
         }
 
         /// <summary>
+        /// Заносит данные заявки в таблицу Request
+        /// </summary>
+        public void AddRequest(Request request)
+        {
+            string sql = "INSERT INTO \"Request\"(id_software, id_developer, id_device, \"SNM\") VALUES (@id_soft, @id_dev, @id_device, @snm);";
+            try
+            {
+                NpgsqlDataSource dataSource = NpgsqlDataSource.Create(ConnectionString);
+                NpgsqlCommand cmd = dataSource.CreateCommand(sql);
+                cmd.Parameters.AddWithValue("@id_soft", request.IdSoftware);
+                cmd.Parameters.AddWithValue("@id_dev", request.IdDeveloper);
+                cmd.Parameters.AddWithValue("@id_device", request.IdDevice);
+                cmd.Parameters.AddWithValue("@snm", request.SNM);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        /// <summary>
         /// Закрывает соединение с базой данных
         /// </summary>
         public void Disconnect()

@@ -10,15 +10,22 @@ using System.Windows.Forms;
 
 namespace Software_Accounting_Client_
 {
+    /// <summary>
+    /// Реализует форму авторизации
+    /// </summary>
     public partial class Autorization : Form
     {
         private DataBase DataBase;
 
+        /// <summary>
+        /// Инициализирует все компоненты
+        /// </summary>
         public Autorization()
         {
             InitializeComponent();
         }
 
+        // Создает нового пользователя и возвращает объект User
         private User GetUser()
         {
             if (SurnameTextBox.Text.Length != 0 && NameTextBox.Text.Length != 0 && MiddlenameTextBox.Text.Length != 0 && RoleTextBox.Text.Length != 0 && 
@@ -41,6 +48,7 @@ namespace Software_Accounting_Client_
             return null;
         }
 
+        // Возникает при нажатии на кнопку "Авторизация". Событие проверяет на корректность все введенные поля и заносит нового пользователя в базу данных
         private void AutorizeBtn_Click(object sender, EventArgs e)
         {
             DataBase = new DataBase(DBSettings.ConnsectionString);
@@ -60,6 +68,7 @@ namespace Software_Accounting_Client_
             DataBase.CreateUser(user);
         }
 
+        // Возникает при закрытии формы. Событие закрывает подключение к базе данных
         private void Autorization_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (DataBase != null)

@@ -42,8 +42,10 @@
             this.Menu = new System.Windows.Forms.MenuStrip();
             this.DBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SoftwareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.разработчикиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DevelopersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReportTextBox = new System.Windows.Forms.RichTextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.Menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,6 +129,7 @@
             this.SubmitBtn.TabIndex = 8;
             this.SubmitBtn.Text = "Подать заявку";
             this.SubmitBtn.UseVisualStyleBackColor = true;
+            this.SubmitBtn.Click += new System.EventHandler(this.SubmitBtn_Click);
             // 
             // GetReportBtn
             // 
@@ -137,6 +140,7 @@
             this.GetReportBtn.TabIndex = 9;
             this.GetReportBtn.Text = "Получить отчет";
             this.GetReportBtn.UseVisualStyleBackColor = true;
+            this.GetReportBtn.Click += new System.EventHandler(this.GetReportBtn_Click);
             // 
             // Menu
             // 
@@ -153,7 +157,7 @@
             // 
             this.DBToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SoftwareToolStripMenuItem,
-            this.разработчикиToolStripMenuItem,
+            this.DevelopersToolStripMenuItem,
             this.DeviceToolStripMenuItem});
             this.DBToolStripMenuItem.Name = "DBToolStripMenuItem";
             this.DBToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
@@ -166,12 +170,12 @@
             this.SoftwareToolStripMenuItem.Text = "Программное обеспечение";
             this.SoftwareToolStripMenuItem.Click += new System.EventHandler(this.SoftwareToolStripMenuItem_Click);
             // 
-            // разработчикиToolStripMenuItem
+            // DevelopersToolStripMenuItem
             // 
-            this.разработчикиToolStripMenuItem.Name = "разработчикиToolStripMenuItem";
-            this.разработчикиToolStripMenuItem.Size = new System.Drawing.Size(288, 26);
-            this.разработчикиToolStripMenuItem.Text = "Разработчики";
-            this.разработчикиToolStripMenuItem.Click += new System.EventHandler(this.разработчикиToolStripMenuItem_Click);
+            this.DevelopersToolStripMenuItem.Name = "DevelopersToolStripMenuItem";
+            this.DevelopersToolStripMenuItem.Size = new System.Drawing.Size(288, 26);
+            this.DevelopersToolStripMenuItem.Text = "Разработчики";
+            this.DevelopersToolStripMenuItem.Click += new System.EventHandler(this.DevelopersToolStripMenuItem_Click);
             // 
             // DeviceToolStripMenuItem
             // 
@@ -180,11 +184,32 @@
             this.DeviceToolStripMenuItem.Text = "Компьютеры";
             this.DeviceToolStripMenuItem.Click += new System.EventHandler(this.DeviceToolStripMenuItem_Click);
             // 
+            // ReportTextBox
+            // 
+            this.ReportTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ReportTextBox.Location = new System.Drawing.Point(17, 373);
+            this.ReportTextBox.Name = "ReportTextBox";
+            this.ReportTextBox.Size = new System.Drawing.Size(534, 131);
+            this.ReportTextBox.TabIndex = 11;
+            this.ReportTextBox.Text = "";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(12, 339);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(73, 22);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Отчёты";
+            // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(563, 352);
+            this.ClientSize = new System.Drawing.Size(563, 516);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.ReportTextBox);
             this.Controls.Add(this.GetReportBtn);
             this.Controls.Add(this.SubmitBtn);
             this.Controls.Add(this.IdDeviceTextBox);
@@ -201,7 +226,7 @@
             this.MainMenuStrip = this.Menu;
             this.MaximizeBox = false;
             this.Name = "ClientForm";
-            this.Text = "Software Accounting(Client)";
+            this.Text = "Учёт ПО(Клиент)";
             this.Load += new System.EventHandler(this.ClientForm_Load);
             this.Menu.ResumeLayout(false);
             this.Menu.PerformLayout();
@@ -225,7 +250,9 @@
         private System.Windows.Forms.MenuStrip Menu;
         private System.Windows.Forms.ToolStripMenuItem DBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SoftwareToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem разработчикиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DevelopersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DeviceToolStripMenuItem;
+        private System.Windows.Forms.RichTextBox ReportTextBox;
+        private System.Windows.Forms.Label label5;
     }
 }

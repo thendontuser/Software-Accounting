@@ -148,6 +148,60 @@ namespace Software_Accounting_Client_
         }
 
         /// <summary>
+        /// Метод возвращает список данных о последней заявке
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public List<string> GetLastRequest(Request request)
+        {
+            List<string> result = new List<string>();
+            string soft = string.Empty, dev = string.Empty, device = string.Empty;
+
+            try
+            {
+                NpgsqlDataSource dataSource = NpgsqlDataSource.Create(ConnectionString);
+                NpgsqlDataReader reader;
+
+                // Получение ПО
+                NpgsqlCommand cmd = dataSource.CreateCommand("SELECT name FROM \"Software\" WHERE id = @id;");
+                cmd.Parameters.AddWithValue("@id", request.IdSoftware);
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    soft = reader[0].ToString();
+                }
+
+                // Получение Разработчика
+                cmd = dataSource.CreateCommand("SELECT name FROM \"Developer\" WHERE id = @id;");
+                cmd.Parameters.AddWithValue("@id", request.IdDeveloper);
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    dev = reader[0].ToString();
+                }
+
+                // Получение Устройства
+                cmd = dataSource.CreateCommand("SELECT name FROM \"Device\" WHERE id = @id;");
+                cmd.Parameters.AddWithValue("@id", request.IdDevice);
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    device = reader[0].ToString();
+                }
+                    
+                // Запись данных
+                result.Add(soft);
+                result.Add(dev);
+                result.Add(device);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return result;
+        }
+
+        /// <summary>
         /// Закрывает соединение с базой данных
         /// </summary>
         public void Disconnect()

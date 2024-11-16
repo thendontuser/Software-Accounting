@@ -17,6 +17,9 @@ namespace Software_Accounting_Client_
     {
         private string ClientName;
 
+        // Поле используется для олучения отчёта по текущей заявке
+        private Request CurrentRequest;
+
         /// <summary>
         /// Инициализирует все компоненты
         /// </summary>
@@ -80,6 +83,7 @@ namespace Software_Accounting_Client_
                     return;
                 }
                 dataBase.AddRequest(request);
+                CurrentRequest = request;
                 dataBase.Disconnect();
                 MessageBox.Show("Заявка отправлена, ждите её рассмотрения");
             }
@@ -87,6 +91,38 @@ namespace Software_Accounting_Client_
             {
                 MessageBox.Show("Все поля должны быть числом");
             }
+        }
+
+        // Возникает при нажатии на кнопку "Получить отчёт". Событие делает выборку из таблицы Request и выводит в текстовое поле информацию о последней заявке
+        private void GetReportBtn_Click(object sender, EventArgs e)
+        {
+            if (CurrentRequest == null)
+            {
+                MessageBox.Show("Не удалось найти последнюю заявку");
+                return;
+            }
+
+            DataBase dataBase = new DataBase(DBSettings.ConnsectionString);
+            if (dataBase.Connect() == -1)
+            {
+                return;
+            }
+
+            List<string> data = dataBase.GetLastRequest(CurrentRequest);
+            if (data.Count == 0)
+            {
+                MessageBox.Show("Не удалось найти последнюю заявку");
+                return;
+            }
+
+            ReportTextBox.Clear();
+            ReportTextBox.Text += "Отправитель: " + ClientName + "\n";
+            ReportTextBox.Text += "Название ПО: " + data[0] + "\n";
+            ReportTextBox.Text += "Разработчик: " + data[1] + "\n";
+            ReportTextBox.Text += "Устройство: " + data[2] + "\n";
+
+            dataBase.Disconnect();
+
         }
     }
 }

@@ -75,8 +75,18 @@ namespace Software_Accounting_Client_
             if (DataBase.IsExists(user))
             {
                 MessageBox.Show("Вход выполнен");
-                ClientForm client = new ClientForm(SurnameTextBox.Text + " " + NameTextBox.Text + " " + MiddlenameTextBox.Text);
-                client.Show();
+                if (string.Equals(RoleTextBox.Text, "user"))
+                {
+                    Role.CurrentRole = "user";
+                    ClientForm client = new ClientForm(SurnameTextBox.Text + " " + NameTextBox.Text + " " + MiddlenameTextBox.Text);
+                    client.Show();
+                }
+                else
+                {
+                    Role.CurrentRole = "admin";
+                    AdminForm admin = new AdminForm(SurnameTextBox.Text + " " + NameTextBox.Text + " " + MiddlenameTextBox.Text);
+                    admin.Show();
+                }
             }
             else
             {

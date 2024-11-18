@@ -1,6 +1,6 @@
 ﻿namespace Software_Accounting_Client_
 {
-    partial class DeveloperData
+    partial class UserData
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeveloperData));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserData));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.EditBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -36,42 +36,39 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(588, 406);
+            this.dataGridView1.Size = new System.Drawing.Size(776, 341);
             this.dataGridView1.TabIndex = 0;
             // 
             // EditBtn
             // 
             this.EditBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.EditBtn.Location = new System.Drawing.Point(12, 424);
+            this.EditBtn.Location = new System.Drawing.Point(12, 371);
             this.EditBtn.Name = "EditBtn";
-            this.EditBtn.Size = new System.Drawing.Size(192, 42);
+            this.EditBtn.Size = new System.Drawing.Size(197, 38);
             this.EditBtn.TabIndex = 1;
             this.EditBtn.Text = "Редактировать таблицу";
             this.EditBtn.UseVisualStyleBackColor = true;
             this.EditBtn.Click += new System.EventHandler(this.EditBtn_Click);
             // 
-            // DeveloperData
+            // UserData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(612, 478);
+            this.ClientSize = new System.Drawing.Size(800, 419);
             this.Controls.Add(this.EditBtn);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "DeveloperData";
-            this.Text = "Разработчики";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DeveloperData_FormClosed);
-            this.Load += new System.EventHandler(this.DeveloperData_Load);
+            this.Name = "UserData";
+            this.Text = "Пользователи";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UserData_FormClosed);
+            this.Load += new System.EventHandler(this.UserData_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

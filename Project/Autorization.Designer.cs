@@ -116,6 +116,7 @@
             // 
             this.PasswordTextBox.Location = new System.Drawing.Point(149, 431);
             this.PasswordTextBox.Name = "PasswordTextBox";
+            this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(255, 22);
             this.PasswordTextBox.TabIndex = 9;
             // 
@@ -179,7 +180,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Autorization";
-            this.Text = "Autorization";
+            this.Text = "Авторизация";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Autorization_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();

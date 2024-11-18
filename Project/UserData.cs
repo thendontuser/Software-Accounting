@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace Software_Accounting_Client_
 {
-    public partial class SoftwareData : Form
+    public partial class UserData : Form
     {
-        DataBase DataBase;
+        private DataBase DataBase;
 
-        public SoftwareData()
+        public UserData()
         {
             InitializeComponent();
         }
 
-        private void SoftwareData_Load(object sender, EventArgs e)
+        private void UserData_Load(object sender, EventArgs e)
         {
             DataBase = new DataBase(DBSettings.ConnsectionString);
 
@@ -27,12 +27,11 @@ namespace Software_Accounting_Client_
             {
                 return;
             }
-
             dataGridView1.AutoGenerateColumns = true;
-            dataGridView1.DataSource = DataBase.GetTable("Software").Tables[0];
+            dataGridView1.DataSource = DataBase.GetTable("User").Tables[0];
         }
 
-        private void SoftwareData_FormClosed(object sender, FormClosedEventArgs e)
+        private void UserData_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (DataBase != null)
             {
@@ -42,13 +41,8 @@ namespace Software_Accounting_Client_
 
         private void EditBtn_Click(object sender, EventArgs e)
         {
-            if (string.Equals(Role.CurrentRole, "user"))
-            {
-                MessageBox.Show("Редактирование таблиц базы данных недоступно обычным пользователям");
-                return;
-            }
-            SoftEditForm softEditForm = new SoftEditForm();
-            softEditForm.Show();
+            UserEditForm userEditForm = new UserEditForm();
+            userEditForm.Show();
         }
     }
 }

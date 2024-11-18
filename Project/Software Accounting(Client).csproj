@@ -95,6 +95,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminForm.Designer.cs">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Autorization.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,12 @@
     <Compile Include="ClientForm.Designer.cs">
       <DependentUpon>ClientForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DevEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DevEditForm.Designer.cs">
+      <DependentUpon>DevEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DeveloperData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +133,12 @@
     <Compile Include="DeviceData.Designer.cs">
       <DependentUpon>DeviceData.cs</DependentUpon>
     </Compile>
+    <Compile Include="DeviceEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeviceEditForm.Designer.cs">
+      <DependentUpon>DeviceEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LogIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +147,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request.cs" />
+    <Compile Include="Role.cs" />
+    <Compile Include="SoftEditData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SoftEditData.Designer.cs">
+      <DependentUpon>SoftEditData.cs</DependentUpon>
+    </Compile>
     <Compile Include="SoftwareData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,17 +162,38 @@
       <DependentUpon>SoftwareData.cs</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
+    <Compile Include="UserData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserData.Designer.cs">
+      <DependentUpon>UserData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserEditForm.Designer.cs">
+      <DependentUpon>UserEditForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AdminForm.resx">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Autorization.resx">
       <DependentUpon>Autorization.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClientForm.resx">
       <DependentUpon>ClientForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DevEditForm.resx">
+      <DependentUpon>DevEditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DeveloperData.resx">
       <DependentUpon>DeveloperData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DeviceData.resx">
       <DependentUpon>DeviceData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeviceEditForm.resx">
+      <DependentUpon>DeviceEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>
@@ -160,8 +207,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SoftEditData.resx">
+      <DependentUpon>SoftEditData.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SoftwareData.resx">
       <DependentUpon>SoftwareData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserData.resx">
+      <DependentUpon>UserData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserEditForm.resx">
+      <DependentUpon>UserEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

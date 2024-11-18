@@ -39,5 +39,16 @@ namespace Software_Accounting_Client_
                 DataBase.Disconnect();
             }
         }
+
+        private void EditBtn_Click(object sender, EventArgs e)
+        {
+            if (string.Equals(Role.CurrentRole, "user"))
+            {
+                MessageBox.Show("Редактирование таблиц базы данных недоступно обычным пользователям");
+                return;
+            }
+            DeviceEditForm deviceEditForm = new DeviceEditForm();
+            deviceEditForm.Show();
+        }
     }
 }

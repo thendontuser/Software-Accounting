@@ -64,6 +64,7 @@
             // 
             this.PasswordTextBox.Location = new System.Drawing.Point(156, 350);
             this.PasswordTextBox.Name = "PasswordTextBox";
+            this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(309, 22);
             this.PasswordTextBox.TabIndex = 3;
             // 
@@ -172,7 +173,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "LogIn";
-            this.Text = "LogIn";
+            this.Text = "Вход";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LogIn_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();

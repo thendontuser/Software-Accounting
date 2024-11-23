@@ -38,12 +38,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.RAMTextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // DeleteBtn
             // 
             this.DeleteBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DeleteBtn.Location = new System.Drawing.Point(313, 276);
+            this.DeleteBtn.Location = new System.Drawing.Point(310, 362);
             this.DeleteBtn.Name = "DeleteBtn";
             this.DeleteBtn.Size = new System.Drawing.Size(123, 44);
             this.DeleteBtn.TabIndex = 17;
@@ -53,7 +55,7 @@
             // UpdateBtn
             // 
             this.UpdateBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.UpdateBtn.Location = new System.Drawing.Point(184, 276);
+            this.UpdateBtn.Location = new System.Drawing.Point(181, 362);
             this.UpdateBtn.Name = "UpdateBtn";
             this.UpdateBtn.Size = new System.Drawing.Size(123, 44);
             this.UpdateBtn.TabIndex = 16;
@@ -63,7 +65,7 @@
             // AddBtn
             // 
             this.AddBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AddBtn.Location = new System.Drawing.Point(55, 276);
+            this.AddBtn.Location = new System.Drawing.Point(52, 362);
             this.AddBtn.Name = "AddBtn";
             this.AddBtn.Size = new System.Drawing.Size(123, 44);
             this.AddBtn.TabIndex = 15;
@@ -121,11 +123,30 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Название";
             // 
+            // RAMTextBox
+            // 
+            this.RAMTextBox.Location = new System.Drawing.Point(89, 296);
+            this.RAMTextBox.Name = "RAMTextBox";
+            this.RAMTextBox.Size = new System.Drawing.Size(311, 22);
+            this.RAMTextBox.TabIndex = 19;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(164, 271);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(159, 22);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Объём ОЗУ(в ГБ)";
+            // 
             // DeviceEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(491, 335);
+            this.ClientSize = new System.Drawing.Size(491, 418);
+            this.Controls.Add(this.RAMTextBox);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.DeleteBtn);
             this.Controls.Add(this.UpdateBtn);
             this.Controls.Add(this.AddBtn);
@@ -156,5 +177,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox NameTextBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox RAMTextBox;
+        private System.Windows.Forms.Label label4;
     }
 }

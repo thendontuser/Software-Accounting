@@ -54,6 +54,7 @@
             // 
             // RequestTable
             // 
+            this.RequestTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.RequestTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.RequestTable.Location = new System.Drawing.Point(16, 129);
             this.RequestTable.Name = "RequestTable";
@@ -79,8 +80,9 @@
             this.CheckSoft.Name = "CheckSoft";
             this.CheckSoft.Size = new System.Drawing.Size(262, 52);
             this.CheckSoft.TabIndex = 3;
-            this.CheckSoft.Text = "Проверить минимальные требования";
+            this.CheckSoft.Text = "Анализ заявки";
             this.CheckSoft.UseVisualStyleBackColor = true;
+            this.CheckSoft.Click += new System.EventHandler(this.CheckSoft_Click);
             // 
             // menuStrip1
             // 
@@ -89,7 +91,7 @@
             this.DBToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(977, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(977, 30);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -101,7 +103,7 @@
             this.devicesToolStripMenuItem,
             this.usersToolStripMenuItem});
             this.DBToolStripMenuItem.Name = "DBToolStripMenuItem";
-            this.DBToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
+            this.DBToolStripMenuItem.Size = new System.Drawing.Size(111, 26);
             this.DBToolStripMenuItem.Text = "База данных";
             // 
             // softwareToolStripMenuItem
@@ -148,6 +150,7 @@
             this.MaximizeBox = false;
             this.Name = "AdminForm";
             this.Text = "Учёт ПО(Администратор)";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AdminForm_FormClosed);
             this.Load += new System.EventHandler(this.AdminForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.RequestTable)).EndInit();
             this.menuStrip1.ResumeLayout(false);

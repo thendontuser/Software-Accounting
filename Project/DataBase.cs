@@ -104,6 +104,37 @@ namespace Software_Accounting_Client_
         }
 
         /// <summary>
+        /// Ищет ПО в системе
+        /// </summary>
+        /// <param name="software"></param>
+        /// <returns>true, если ПО существует в таблице, иначе false</returns>
+        public bool IsExists(Software software)
+        {
+            string sql = "SELECT * FROM \"Software\";";
+            try
+            {
+                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(sql, ConnectionString);
+                DataSet dataSet = new DataSet();
+                adapter.Fill(dataSet);
+
+                foreach (DataRow row in dataSet.Tables[0].Rows)
+                {
+                    if (Convert.ToInt32(row.ItemArray[0].ToString()) == software.Id && Convert.ToInt32(row.ItemArray[6].ToString()) == software.IdDevice
+                        && Convert.ToInt32(row.ItemArray[7].ToString()) == software.IdDeveloper)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Получает все записи в указанной таблице
         /// </summary>
         /// <param name="tableName">Название таблицы</param>

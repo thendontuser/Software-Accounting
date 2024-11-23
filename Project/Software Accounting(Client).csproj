@@ -155,6 +155,7 @@
     <Compile Include="SoftEditData.Designer.cs">
       <DependentUpon>SoftEditData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Software.cs" />
     <Compile Include="SoftwareData.cs">
       <SubType>Form</SubType>
     </Compile>

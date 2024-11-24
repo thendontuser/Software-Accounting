@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -170,6 +172,223 @@ namespace Software_Accounting_Client_
                 cmd.Parameters.AddWithValue("@id_dev", request.IdDeveloper);
                 cmd.Parameters.AddWithValue("@id_device", request.IdDevice);
                 cmd.Parameters.AddWithValue("@snm", request.SNM);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Редактирует данные в таблице Developer в зависимости от значения команды
+        /// </summary>
+        /// <param name="dev"></param>
+        public void EditDeveloper(Developer dev, SqlCommand sqlCmd)
+        {
+            string sql = string.Empty;
+            NpgsqlDataSource dataSource = NpgsqlDataSource.Create(ConnectionString);
+            NpgsqlCommand cmd;
+
+            switch (sqlCmd)
+            {
+                case SqlCommand.INSERT:
+                    sql = "INSERT INTO \"Developer\" (name, type_of_company, location) VALUES (@name, @toc, @location);";
+                    cmd = dataSource.CreateCommand(sql);
+                    break;
+                case SqlCommand.UPDATE:
+                    sql = "UPDATE \"Developer\" SET name = @name, type_of_company = @toc, location = @location WHERE id = @id;";
+                    cmd = dataSource.CreateCommand(sql);
+                    cmd.Parameters.AddWithValue("@id", dev.ID);
+                    break;
+                case SqlCommand.DELETE:
+                    sql = "DELETE FROM \"Developer\" WHERE id = @id;";
+                    cmd = dataSource.CreateCommand(sql);
+                    cmd.Parameters.AddWithValue("@id", dev.ID);
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        return;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        return;
+                    }
+                default:
+                    cmd = dataSource.CreateCommand(sql);
+                    break;
+            }
+
+            try
+            {
+                cmd.Parameters.AddWithValue("@name", dev.Name);
+                cmd.Parameters.AddWithValue("@toc", dev.TypeOfCompany);
+                cmd.Parameters.AddWithValue("@location", dev.Location);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Редактирует данные в таблице Software в зависимости от значения команды
+        /// </summary>
+        /// <param name="soft"></param>
+        /// <param name="sqlCmd"></param>
+        public void EditSoftware(Software soft, SqlCommand sqlCmd)
+        {
+            string sql = string.Empty;
+            NpgsqlDataSource dataSource = NpgsqlDataSource.Create(ConnectionString);
+            NpgsqlCommand cmd;
+
+            switch (sqlCmd)
+            {
+                case SqlCommand.INSERT:
+                    sql = "INSERT INTO \"Software\" (name, version, license, license_begin, license_end, id_device, id_developer) VALUES (@name, @version, @license, @lb, @le, @id_device, @id_dev);";
+                    cmd = dataSource.CreateCommand(sql);
+                    break;
+                case SqlCommand.UPDATE:
+                    sql = "UPDATE \"Software\" SET name = @name, version = @version, license = @license, license_begin = @lb, license_end = @le, id_device = @id_device, id_developer = @id_dev WHERE id = @id;";
+                    cmd = dataSource.CreateCommand(sql);
+                    cmd.Parameters.AddWithValue("@id", soft.Id);
+                    break;
+                case SqlCommand.DELETE:
+                    sql = "DELETE FROM \"Software\" WHERE id = @id;";
+                    cmd = dataSource.CreateCommand(sql);
+                    cmd.Parameters.AddWithValue("@id", soft.Id);
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        return;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        return;
+                    }
+                default:
+                    cmd = dataSource.CreateCommand(sql);
+                    break;
+            }
+
+            try
+            {
+                cmd.Parameters.AddWithValue("@name", soft.Name);
+                cmd.Parameters.AddWithValue("@version", soft.Version);
+                cmd.Parameters.AddWithValue("@license", soft.License);
+                cmd.Parameters.AddWithValue("@lb", Convert.ToDateTime(soft.LicenseBegin));
+                cmd.Parameters.AddWithValue("@le", Convert.ToDateTime(soft.LicenseEnd));
+                cmd.Parameters.AddWithValue("@id_device", soft.IdDevice);
+                cmd.Parameters.AddWithValue("@id_dev", soft.IdDeveloper);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Редактирует данные в таблице Device в зависимости от значения команды
+        /// </summary>
+        /// <param name="device"></param>
+        public void EditDevice(Device device, SqlCommand sqlCmd)
+        {
+            string sql = string.Empty;
+            NpgsqlDataSource dataSource = NpgsqlDataSource.Create(ConnectionString);
+            NpgsqlCommand cmd;
+
+            switch (sqlCmd)
+            {
+                case SqlCommand.INSERT:
+                    sql = "INSERT INTO \"Device\" (name, \"OS\", ip_address, \"RAM\") VALUES (@name, @os, @ip, @ram);";
+                    cmd = dataSource.CreateCommand(sql);
+                    break;
+                case SqlCommand.UPDATE:
+                    sql = "UPDATE \"Device\" SET name = @name, \"OS\" = @os, ip_address = @ip, \"RAM\" = @ram WHERE id = @id;";
+                    cmd = dataSource.CreateCommand(sql);
+                    cmd.Parameters.AddWithValue("@id", device.ID);
+                    break;
+                case SqlCommand.DELETE:
+                    sql = "DELETE FROM \"Device\" WHERE id = @id;";
+                    cmd = dataSource.CreateCommand(sql);
+                    cmd.Parameters.AddWithValue("@id", device.ID);
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        return;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        return;
+                    }
+                default:
+                    cmd = dataSource.CreateCommand(sql);
+                    break;
+            }
+
+            try
+            {
+                cmd.Parameters.AddWithValue("@name", device.Name);
+                cmd.Parameters.AddWithValue("@os", device.OS);
+                cmd.Parameters.AddWithValue("@ip", device.IPAddress);
+                cmd.Parameters.AddWithValue("@ram", device.RAM);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Редактирует данные в таблице User в зависимости от значения команды
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="sqlCmd"></param>
+        public void EditUser(User user, SqlCommand sqlCmd)
+        {
+            string sql = string.Empty;
+            NpgsqlDataSource dataSource = NpgsqlDataSource.Create(ConnectionString);
+            NpgsqlCommand cmd;
+
+            switch (sqlCmd)
+            {
+                case SqlCommand.UPDATE:
+                    sql = "UPDATE \"User\" SET surname = @sn, name = @name, middlename = @mn, role = @role, id_device = @id_device WHERE id = @id;";
+                    cmd = dataSource.CreateCommand(sql);
+                    cmd.Parameters.AddWithValue("@id", user.ID);
+                    break;
+                case SqlCommand.DELETE:
+                    sql = "DELETE FROM \"User\" WHERE id = @id;";
+                    cmd = dataSource.CreateCommand(sql);
+                    cmd.Parameters.AddWithValue("@id", user.ID);
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        return;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        return;
+                    }
+                default:
+                    cmd = dataSource.CreateCommand(sql);
+                    break;
+            }
+
+            try
+            {
+                cmd.Parameters.AddWithValue("@sn", user.Surname);
+                cmd.Parameters.AddWithValue("@name", user.Name);
+                cmd.Parameters.AddWithValue("@mn", user.Middlename);
+                cmd.Parameters.AddWithValue("@role", user.Role);
+                cmd.Parameters.AddWithValue("@id_device", user.IdDevice);
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)

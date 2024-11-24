@@ -77,7 +77,7 @@ namespace Software_Accounting_Client_
                 request.IdDevice = idDevice;
                 request.SNM = ClientName;
 
-                DataBase dataBase = new DataBase(DBSettings.ConnsectionString);
+                DataBase dataBase = new DataBase(DBSettings.ConnectionString);
                 if (dataBase.Connect() == -1)
                 {
                     return;
@@ -102,7 +102,7 @@ namespace Software_Accounting_Client_
                 return;
             }
 
-            DataBase dataBase = new DataBase(DBSettings.ConnsectionString);
+            DataBase dataBase = new DataBase(DBSettings.ConnectionString);
             if (dataBase.Connect() == -1)
             {
                 return;

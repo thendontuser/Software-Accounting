@@ -12,6 +12,11 @@ namespace Software_Accounting_Client_
     internal class User
     {
         /// <summary>
+        /// Идентификатор пользователя
+        /// </summary>
+        public int ID { get; set; }
+
+        /// <summary>
         /// Фамилия пользователя
         /// </summary>
         public string Surname { get; set; }

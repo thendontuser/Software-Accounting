@@ -13,11 +13,11 @@ namespace Software_Accounting_Client_
     /// </summary>
     internal static class DBSettings
     {
-        private const string ConnectionString = "Host = localhost; Username = postgres; Password = Anyathebestgirl; Database = software_accounting";
+        private const string _ConnectionString = "Host = localhost; Username = postgres; Password = Anyathebestgirl; Database = software_accounting";
 
         /// <summary>
         /// Возвращает строку подключеня
         /// </summary>
-        public static string ConnsectionString { get { return ConnectionString; } }
+        public static string ConnectionString { get { return _ConnectionString; } }
     }
 }

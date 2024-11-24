@@ -51,7 +51,7 @@ namespace Software_Accounting_Client_
         // Возникает при нажатии на кнопку "Авторизация". Событие проверяет на корректность все введенные поля и заносит нового пользователя в базу данных
         private void AutorizeBtn_Click(object sender, EventArgs e)
         {
-            DataBase = new DataBase(DBSettings.ConnsectionString);
+            DataBase = new DataBase(DBSettings.ConnectionString);
 
             if (DataBase.Connect() == -1)
             {

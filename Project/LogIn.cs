@@ -58,7 +58,7 @@ namespace Software_Accounting_Client_
         // вызывается форма клиента или администратора, в зависимости от значения поля "Роль"
         private void LogInBtn_Click(object sender, EventArgs e)
         {
-            DataBase = new DataBase(DBSettings.ConnsectionString);
+            DataBase = new DataBase(DBSettings.ConnectionString);
 
             if (DataBase.Connect() == -1)
             {

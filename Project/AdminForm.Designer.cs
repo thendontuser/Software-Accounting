@@ -60,7 +60,7 @@
             this.RequestTable.Name = "RequestTable";
             this.RequestTable.RowHeadersWidth = 51;
             this.RequestTable.RowTemplate.Height = 24;
-            this.RequestTable.Size = new System.Drawing.Size(952, 482);
+            this.RequestTable.Size = new System.Drawing.Size(1137, 512);
             this.RequestTable.TabIndex = 1;
             // 
             // label2
@@ -76,7 +76,7 @@
             // CheckSoft
             // 
             this.CheckSoft.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CheckSoft.Location = new System.Drawing.Point(20, 617);
+            this.CheckSoft.Location = new System.Drawing.Point(16, 647);
             this.CheckSoft.Name = "CheckSoft";
             this.CheckSoft.Size = new System.Drawing.Size(262, 52);
             this.CheckSoft.TabIndex = 3;
@@ -91,7 +91,7 @@
             this.DBToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(977, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1165, 28);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -103,7 +103,7 @@
             this.devicesToolStripMenuItem,
             this.usersToolStripMenuItem});
             this.DBToolStripMenuItem.Name = "DBToolStripMenuItem";
-            this.DBToolStripMenuItem.Size = new System.Drawing.Size(111, 26);
+            this.DBToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
             this.DBToolStripMenuItem.Text = "База данных";
             // 
             // softwareToolStripMenuItem
@@ -138,7 +138,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(977, 678);
+            this.ClientSize = new System.Drawing.Size(1165, 711);
             this.Controls.Add(this.CheckSoft);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.RequestTable);

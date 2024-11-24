@@ -21,7 +21,7 @@ namespace Software_Accounting_Client_
 
         private void DeveloperData_Load(object sender, EventArgs e)
         {
-            DataBase = new DataBase(DBSettings.ConnsectionString);
+            DataBase = new DataBase(DBSettings.ConnectionString);
 
             if (DataBase.Connect() == -1)
             {

@@ -46,6 +46,11 @@ namespace Software_Accounting_Client_
             soft.IdDevice = Convert.ToInt32(IDDeviceTextBox.Text.ToString());
             soft.IdDeveloper = Convert.ToInt32(IDDevTextBox.Text.ToString());
 
+            if (ImageTextBox.Text.Length > 0)
+            {
+                soft.LogoPath = ImageTextBox.Text;
+            }
+
             DataBase.EditSoftware(soft, SqlCommand.INSERT);
         }
 
@@ -67,6 +72,11 @@ namespace Software_Accounting_Client_
             soft.LicenseEnd = LicenseEndTextBox.Text;
             soft.IdDevice = Convert.ToInt32(IDDeviceTextBox.Text.ToString());
             soft.IdDeveloper = Convert.ToInt32(IDDevTextBox.Text.ToString());
+
+            if (ImageTextBox.Text.Length > 0)
+            {
+                soft.LogoPath = ImageTextBox.Text;
+            }
 
             DataBase.EditSoftware(soft, SqlCommand.UPDATE);
         }

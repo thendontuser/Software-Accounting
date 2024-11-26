@@ -247,11 +247,11 @@ namespace Software_Accounting_Client_
             switch (sqlCmd)
             {
                 case SqlCommand.INSERT:
-                    sql = "INSERT INTO \"Software\" (name, version, license, license_begin, license_end, id_device, id_developer) VALUES (@name, @version, @license, @lb, @le, @id_device, @id_dev);";
+                    sql = "INSERT INTO \"Software\" (name, version, license, license_begin, license_end, id_device, id_developer, logo) VALUES (@name, @version, @license, @lb, @le, @id_device, @id_dev, @logo);";
                     cmd = dataSource.CreateCommand(sql);
                     break;
                 case SqlCommand.UPDATE:
-                    sql = "UPDATE \"Software\" SET name = @name, version = @version, license = @license, license_begin = @lb, license_end = @le, id_device = @id_device, id_developer = @id_dev WHERE id = @id;";
+                    sql = "UPDATE \"Software\" SET name = @name, version = @version, license = @license, license_begin = @lb, license_end = @le, id_device = @id_device, id_developer = @id_dev, logo = @logo WHERE id = @id;";
                     cmd = dataSource.CreateCommand(sql);
                     cmd.Parameters.AddWithValue("@id", soft.Id);
                     break;
@@ -276,6 +276,18 @@ namespace Software_Accounting_Client_
 
             try
             {
+                if (soft.LogoPath == null)
+                {
+                    cmd.Parameters.AddWithValue("@logo", ImageByteA.GetImageBytes(ImageByteA.WHITE_NOISE));
+                }
+                else
+                {
+                    NpgsqlParameter logo = new NpgsqlParameter();
+                    logo.ParameterName = "@logo";
+                    logo.NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Bytea;
+                    logo.Value = ImageByteA.GetImageBytes(soft.LogoPath);
+                    cmd.Parameters.AddWithValue(logo.ParameterName, logo.Value);
+                }
                 cmd.Parameters.AddWithValue("@name", soft.Name);
                 cmd.Parameters.AddWithValue("@version", soft.Version);
                 cmd.Parameters.AddWithValue("@license", soft.License);
@@ -283,6 +295,7 @@ namespace Software_Accounting_Client_
                 cmd.Parameters.AddWithValue("@le", Convert.ToDateTime(soft.LicenseEnd));
                 cmd.Parameters.AddWithValue("@id_device", soft.IdDevice);
                 cmd.Parameters.AddWithValue("@id_dev", soft.IdDeveloper);
+                
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)

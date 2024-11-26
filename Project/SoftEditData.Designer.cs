@@ -48,12 +48,14 @@
             this.label7 = new System.Windows.Forms.Label();
             this.IDTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.ImageTextBox = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // DeleteBtn
             // 
             this.DeleteBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DeleteBtn.Location = new System.Drawing.Point(315, 655);
+            this.DeleteBtn.Location = new System.Drawing.Point(315, 727);
             this.DeleteBtn.Name = "DeleteBtn";
             this.DeleteBtn.Size = new System.Drawing.Size(123, 44);
             this.DeleteBtn.TabIndex = 17;
@@ -64,7 +66,7 @@
             // UpdateBtn
             // 
             this.UpdateBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.UpdateBtn.Location = new System.Drawing.Point(186, 655);
+            this.UpdateBtn.Location = new System.Drawing.Point(186, 727);
             this.UpdateBtn.Name = "UpdateBtn";
             this.UpdateBtn.Size = new System.Drawing.Size(123, 44);
             this.UpdateBtn.TabIndex = 16;
@@ -75,7 +77,7 @@
             // AddBtn
             // 
             this.AddBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AddBtn.Location = new System.Drawing.Point(57, 655);
+            this.AddBtn.Location = new System.Drawing.Point(57, 727);
             this.AddBtn.Name = "AddBtn";
             this.AddBtn.Size = new System.Drawing.Size(123, 44);
             this.AddBtn.TabIndex = 15;
@@ -219,11 +221,30 @@
             this.label8.TabIndex = 26;
             this.label8.Text = "ID";
             // 
+            // ImageTextBox
+            // 
+            this.ImageTextBox.Location = new System.Drawing.Point(99, 674);
+            this.ImageTextBox.Name = "ImageTextBox";
+            this.ImageTextBox.Size = new System.Drawing.Size(311, 22);
+            this.ImageTextBox.TabIndex = 29;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(94, 649);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(322, 22);
+            this.label9.TabIndex = 28;
+            this.label9.Text = "Путь к изображению(необязательно)";
+            // 
             // SoftEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 720);
+            this.ClientSize = new System.Drawing.Size(508, 783);
+            this.Controls.Add(this.ImageTextBox);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.IDTextBox);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.IDDevTextBox);
@@ -276,5 +297,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox IDTextBox;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox ImageTextBox;
+        private System.Windows.Forms.Label label9;
     }
 }

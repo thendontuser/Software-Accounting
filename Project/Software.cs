@@ -51,5 +51,10 @@ namespace Software_Accounting_Client_
         /// ID разработчика данного ПО
         /// </summary>
         public int IdDeveloper { get; set; }
+
+        /// <summary>
+        /// Путь к файлу изображения
+        /// </summary>
+        public string LogoPath { get; set; }
     }
 }

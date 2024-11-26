@@ -50,5 +50,11 @@ namespace Software_Accounting_Client_
             SoftEditForm softEditForm = new SoftEditForm();
             softEditForm.Show();
         }
+
+        private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show("Значение столбца равно null");
+            this.Close();
+        }
     }
 }

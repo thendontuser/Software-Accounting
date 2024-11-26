@@ -121,12 +121,14 @@
     <Compile Include="DevEditForm.Designer.cs">
       <DependentUpon>DevEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Developer.cs" />
     <Compile Include="DeveloperData.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DeveloperData.Designer.cs">
       <DependentUpon>DeveloperData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Device.cs" />
     <Compile Include="DeviceData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +141,7 @@
     <Compile Include="DeviceEditForm.Designer.cs">
       <DependentUpon>DeviceEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageByteA.cs" />
     <Compile Include="LogIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +165,7 @@
     <Compile Include="SoftwareData.Designer.cs">
       <DependentUpon>SoftwareData.cs</DependentUpon>
     </Compile>
+    <Compile Include="SqlCommand.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserData.cs">
       <SubType>Form</SubType>

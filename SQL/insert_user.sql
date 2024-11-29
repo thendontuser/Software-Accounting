@@ -1,0 +1,1 @@
+INSERT INTO \"User\"(surname, name, middlename, role, id_device, password_hash) VALUES (@surname, @name, @middlename, @role, @id_device, @password_hash);

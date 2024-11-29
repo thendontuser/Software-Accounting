@@ -1,0 +1,1 @@
+DELETE FROM "Software" WHERE id = @id;

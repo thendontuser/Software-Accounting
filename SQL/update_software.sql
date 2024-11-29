@@ -1,0 +1,1 @@
+UPDATE "Software" SET name = @name, version = @version, license = @license, license_begin = @lb, license_end = @le, id_device = @id_device, id_developer = @id_dev, logo = @logo WHERE id = @id;

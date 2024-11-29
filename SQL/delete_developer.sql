@@ -1,0 +1,1 @@
+DELETE FROM "Developer" WHERE id = @id;

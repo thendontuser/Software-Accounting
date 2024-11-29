@@ -1,0 +1,1 @@
+UPDATE "User" SET surname = @sn, name = @name, middlename = @mn, role = @role, id_device = @id_device WHERE id = @id;

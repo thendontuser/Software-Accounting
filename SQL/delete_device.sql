@@ -1,0 +1,1 @@
+DELETE FROM "Device" WHERE id = @id;

@@ -1,0 +1,1 @@
+INSERT INTO "Request"(id_software, id_developer, id_device, "SNM") VALUES (@id_soft, @id_dev, @id_device, @snm);

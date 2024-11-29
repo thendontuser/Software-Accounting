@@ -1,0 +1,1 @@
+INSERT INTO "Device" (name, \"OS\", ip_address, \"RAM\") VALUES (@name, @os, @ip, @ram);

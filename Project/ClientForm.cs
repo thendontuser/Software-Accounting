@@ -30,66 +30,95 @@ namespace Software_Accounting_Client_
             ClientName = clientName;
         }
 
+        // Заполняет данными выпадающие поля
+        private void FillComboBox(string table, char comboBox)
+        {
+            List<string> items = new List<string>();
+            DataBase dataBase = new DataBase(DBSettings.ConnectionString);
+
+            if (dataBase.Connect() == -1)
+            {
+                MessageBox.Show("Не удалось подключиться к базе данных");
+                return;
+            }
+
+            DataSet ds = dataBase.GetTable(table);
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                items.Add(row.ItemArray[1].ToString());
+            }
+            
+            switch (comboBox)
+            {
+                case 's':
+                    SoftwareComboBox.Items.AddRange(items.ToArray());
+                    break;
+                case 'd':
+                    DeviceComboBox.Items.AddRange(items.ToArray());
+                    break;
+            }
+            dataBase.Disconnect();
+        }
+
         // Возникает при загрузке формы. Событие выводит ФИО пользователя на форму
         private void ClientForm_Load(object sender, EventArgs e)
         {
             UserLbl.Text = "Пользователь: " + ClientName;
-        }
-
-        // Возникает при нажатии на кнопку "Программное обеспечение". Событие вызывает форму с таблицей ПО
-        private void SoftwareToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SoftwareData softwareData = new SoftwareData();
-            softwareData.Show();
-        }
-
-        // Возникает при нажатии на кнопку "Разработчики". Событие вызывает форму с таблицей разработчиков
-        private void DevelopersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DeveloperData devData = new DeveloperData();
-            devData.Show();
-        }
-
-        // Возникает при нажатии на кнопку "Компьютеры". Событие вызывает форму с таблицей компьютеров
-        private void DeviceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DeviceData deviceData = new DeviceData();
-            deviceData.Show();
+            FillComboBox("Software", 's');
+            FillComboBox("Device", 'd');
         }
 
         // Возникает при нажатии на кнопку "Подать заявку". Событие проверяет корректность введенных данных в поля и заносит эти данные в таблицу
         // "Request" базы данных
         private void SubmitBtn_Click(object sender, EventArgs e)
         {
-            if (IdSoftTextBox.Text.Length == 0 || IdDevTextBox.Text.Length == 0 || IdDeviceTextBox.Text.Length == 0)
+            if (SoftwareComboBox.SelectedItem == null || DeviceComboBox.SelectedItem == null)
             {
                 MessageBox.Show("Все поля должны быть заполнены");
                 return;
             }
 
-            int idSoft, idDev, idDevice;
-
-            if (int.TryParse(IdSoftTextBox.Text, out idSoft) && int.TryParse(IdDevTextBox.Text, out idDev) && int.TryParse(IdDeviceTextBox.Text, out idDevice))
+            try
             {
-                Request request = new Request();
-                request.IdSoftware = idSoft;
-                request.IdDeveloper = idDev;
-                request.IdDevice = idDevice;
-                request.SNM = ClientName;
-
                 DataBase dataBase = new DataBase(DBSettings.ConnectionString);
+                Request request = new Request();
+                DataSet ds = new DataSet();
+
                 if (dataBase.Connect() == -1)
                 {
+                    MessageBox.Show("Не удалось подключиться к базе данных");
                     return;
                 }
+
+                ds = dataBase.GetTable("Software");
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    if (string.Equals(row.ItemArray[1].ToString(), SoftwareComboBox.SelectedItem.ToString()))
+                    {
+                        request.IdSoftware = Convert.ToInt32(row.ItemArray[0].ToString());
+                        request.IdDeveloper = Convert.ToInt32(row.ItemArray[7].ToString());
+                        break;
+                    }
+                }
+
+                ds = dataBase.GetTable("Device");
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    if (string.Equals(row.ItemArray[1].ToString(), DeviceComboBox.SelectedItem.ToString()))
+                    {
+                        request.IdDevice = Convert.ToInt32(row.ItemArray[0].ToString());
+                    }
+                }
+
+                request.SNM = ClientName;
                 dataBase.AddRequest(request);
                 CurrentRequest = request;
                 dataBase.Disconnect();
-                MessageBox.Show("Заявка отправлена, ждите её рассмотрения");
+                MessageBox.Show("Заявка отправлена на рассмотрение");
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Все поля должны быть числом");
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -105,6 +134,7 @@ namespace Software_Accounting_Client_
             DataBase dataBase = new DataBase(DBSettings.ConnectionString);
             if (dataBase.Connect() == -1)
             {
+                MessageBox.Show("Не удалось подключиться к базе данных");
                 return;
             }
 

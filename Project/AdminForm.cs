@@ -30,7 +30,54 @@ namespace Software_Accounting_Client_
             {
                 return;
             }
-            RequestTable.DataSource = DataBase.GetTable("Request").Tables[0];
+
+            DataSet ds = DataBase.GetTable("Request");
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                string software = string.Empty;
+                string developer = string.Empty;
+                string device = string.Empty;
+                DataSet tables = new DataSet();
+
+                // Получение названия ПО
+                tables = DataBase.GetTable("Software");
+                foreach (DataRow dataRow in tables.Tables[0].Rows)
+                {
+                    if (string.Equals(row.ItemArray[1].ToString(), dataRow.ItemArray[0].ToString()))
+                    {
+                        software = dataRow.ItemArray[1].ToString();
+                        break;
+                    }
+                }
+
+                // Получение названия разработчика
+                tables = DataBase.GetTable("Developer");
+                foreach (DataRow dataRow in tables.Tables[0].Rows)
+                {
+                    if (string.Equals(row.ItemArray[2].ToString(), dataRow.ItemArray[0].ToString()))
+                    {
+                        developer = dataRow.ItemArray[1].ToString();
+                        break;
+                    }
+                }
+
+                // Получение названия устройства
+                tables = DataBase.GetTable("Device");
+                foreach (DataRow dataRow in tables.Tables[0].Rows)
+                {
+                    if (string.Equals(row.ItemArray[3].ToString(), dataRow.ItemArray[0].ToString()))
+                    {
+                        device = dataRow.ItemArray[1].ToString();
+                        break;
+                    }
+                }
+
+                int index = RequestTable.Rows.Add();
+                RequestTable.Rows[index].Cells[0].Value = software.ToString();
+                RequestTable.Rows[index].Cells[1].Value = developer.ToString();
+                RequestTable.Rows[index].Cells[2].Value = device.ToString();
+                RequestTable.Rows[index].Cells[3].Value = row.ItemArray[4].ToString();
+            }
         }
 
         private void softwareToolStripMenuItem_Click(object sender, EventArgs e)
@@ -68,9 +115,40 @@ namespace Software_Accounting_Client_
             }
 
             Software software = new Software();
-            software.Id = Convert.ToInt32(RequestTable.SelectedRows[0].Cells[1].Value.ToString());
-            software.IdDeveloper = Convert.ToInt32(RequestTable.SelectedRows[0].Cells[2].Value.ToString());
-            software.IdDevice = Convert.ToInt32(RequestTable.SelectedRows[0].Cells[3].Value.ToString());
+            DataSet ds = new DataSet();
+
+            // Получение ID ПО
+            ds = DataBase.GetTable("Software");
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                if (string.Equals(row.ItemArray[1].ToString(), RequestTable.SelectedRows[0].Cells[0].Value.ToString()))
+                {
+                    software.Id = Convert.ToInt32(row.ItemArray[0].ToString());
+                    break;
+                }
+            }
+
+            // Получение ID разработчика
+            ds = DataBase.GetTable("Developer");
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                if (string.Equals(row.ItemArray[1].ToString(), RequestTable.SelectedRows[0].Cells[1].Value.ToString()))
+                {
+                    software.IdDeveloper = Convert.ToInt32(row.ItemArray[0].ToString());
+                    break;
+                }
+            }
+
+            // Получение ID разработчика
+            ds = DataBase.GetTable("Device");
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                if (string.Equals(row.ItemArray[1].ToString(), RequestTable.SelectedRows[0].Cells[2].Value.ToString()))
+                {
+                    software.IdDevice = Convert.ToInt32(row.ItemArray[0].ToString());
+                    break;
+                }
+            }
 
             if (DataBase.IsExists(software))
             {

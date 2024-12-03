@@ -39,6 +39,11 @@
             this.developersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.devicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SoftwareColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeveloperColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeviceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SNMColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StateColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.RequestTable)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -56,6 +61,12 @@
             // 
             this.RequestTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.RequestTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.RequestTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.SoftwareColumn,
+            this.DeveloperColumn,
+            this.DeviceColumn,
+            this.SNMColumn,
+            this.StateColumn});
             this.RequestTable.Location = new System.Drawing.Point(16, 129);
             this.RequestTable.Name = "RequestTable";
             this.RequestTable.RowHeadersWidth = 51;
@@ -134,6 +145,38 @@
             this.usersToolStripMenuItem.Text = "Пользователи";
             this.usersToolStripMenuItem.Click += new System.EventHandler(this.usersToolStripMenuItem_Click);
             // 
+            // SoftwareColumn
+            // 
+            this.SoftwareColumn.HeaderText = "Программное обеспечение";
+            this.SoftwareColumn.MinimumWidth = 6;
+            this.SoftwareColumn.Name = "SoftwareColumn";
+            // 
+            // DeveloperColumn
+            // 
+            this.DeveloperColumn.HeaderText = "Разработчик";
+            this.DeveloperColumn.MinimumWidth = 6;
+            this.DeveloperColumn.Name = "DeveloperColumn";
+            // 
+            // DeviceColumn
+            // 
+            this.DeviceColumn.HeaderText = "Устройство";
+            this.DeviceColumn.MinimumWidth = 6;
+            this.DeviceColumn.Name = "DeviceColumn";
+            // 
+            // SNMColumn
+            // 
+            this.SNMColumn.HeaderText = "ФИО";
+            this.SNMColumn.MinimumWidth = 6;
+            this.SNMColumn.Name = "SNMColumn";
+            // 
+            // StateColumn
+            // 
+            this.StateColumn.HeaderText = "Состояние";
+            this.StateColumn.MinimumWidth = 6;
+            this.StateColumn.Name = "StateColumn";
+            this.StateColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.StateColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -172,5 +215,10 @@
         private System.Windows.Forms.ToolStripMenuItem developersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem devicesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SoftwareColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DeveloperColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DeviceColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SNMColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn StateColumn;
     }
 }

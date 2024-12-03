@@ -28,21 +28,17 @@ namespace Software_Accounting_Client_
         // Создает нового пользователя и возвращает объект User
         private User GetUser()
         {
-            if (SurnameTextBox.Text.Length != 0 && NameTextBox.Text.Length != 0 && MiddlenameTextBox.Text.Length != 0 && RoleTextBox.Text.Length != 0 && 
-                IdDeviceTextBox.Text.Length != 0 && PasswordTextBox.Text.Length != 0)
+            if (SurnameTextBox.Text.Length != 0 && NameTextBox.Text.Length != 0 && MiddlenameTextBox.Text.Length != 0 && (UserRB.Checked || AdminRB.Checked) && 
+                IdDeviceTextBox.Text.Length != 0 && PasswordTextBox.Text.Length != 0 && LoginTextBox.Text.Length != 0)
             {
-                if (!string.Equals(RoleTextBox.Text.ToLower(), "user") && !string.Equals(RoleTextBox.Text.ToLower(), "admin"))
-                {
-                    MessageBox.Show("Поле \"Роль\" должно содеражть значение \"user/admin\"");
-                    return null;
-                }
                 User user = new User();
                 user.Surname = SurnameTextBox.Text;
                 user.Name = NameTextBox.Text;
                 user.Middlename = MiddlenameTextBox.Text;
-                user.Role = RoleTextBox.Text;
+                user.Role = UserRB.Checked ? "user" : "admin";
                 user.IdDevice = Convert.ToInt32(IdDeviceTextBox.Text);
                 user.Password = PasswordTextBox.Text;
+                user.Login = LoginTextBox.Text;
                 return user;
             }
             return null;
@@ -65,6 +61,17 @@ namespace Software_Accounting_Client_
                 MessageBox.Show("Все поля должы быть заполнены");
                 return;
             }
+
+            DataSet ds = DataBase.GetTable("User");
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                if (string.Equals(row.ItemArray[7].ToString(), user.Login))
+                {
+                    MessageBox.Show("Пользователь с таким же логином уже существует");
+                    return;
+                }
+            }
+
             DataBase.CreateUser(user);
         }
 

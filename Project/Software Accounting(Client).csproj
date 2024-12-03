@@ -142,6 +142,12 @@
       <DependentUpon>DeviceEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ImageByteA.cs" />
+    <Compile Include="ImageContentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageContentForm.Designer.cs">
+      <DependentUpon>ImageContentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LogIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DeviceEditForm.resx">
       <DependentUpon>DeviceEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageContentForm.resx">
+      <DependentUpon>ImageContentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>

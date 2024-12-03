@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlTypes;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -55,7 +57,7 @@ namespace Software_Accounting_Client_
         /// <param name="user"></param>
         public void CreateUser(User user)
         {
-            string sql = "INSERT INTO \"User\"(surname, name, middlename, role, id_device, password_hash) VALUES (@surname, @name, @middlename, @role, @id_device, @password_hash);";
+            string sql = "INSERT INTO \"User\"(surname, name, middlename, role, id_device, password_hash, login) VALUES (@surname, @name, @middlename, @role, @id_device, @password_hash, @login);";
             try
             {
                 NpgsqlDataSource dataSource = NpgsqlDataSource.Create(ConnectionString);
@@ -66,6 +68,7 @@ namespace Software_Accounting_Client_
                 cmd.Parameters.AddWithValue("@role", user.Role);
                 cmd.Parameters.AddWithValue("@id_device", user.IdDevice);
                 cmd.Parameters.AddWithValue("@password_hash", user.Password.GetHashCode().ToString());
+                cmd.Parameters.AddWithValue("@login", user.Login);
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -90,8 +93,7 @@ namespace Software_Accounting_Client_
 
                 foreach (DataRow row in dataSet.Tables[0].Rows)
                 {
-                    if (string.Equals(row.ItemArray[1], user.Surname) && string.Equals(row.ItemArray[2], user.Name) && string.Equals(row.ItemArray[3], user.Middlename) &&
-                        string.Equals(row.ItemArray[6], user.Password.GetHashCode().ToString()) && string.Equals(row.ItemArray[4], user.Role))
+                    if (string.Equals(row.ItemArray[7].ToString(), user.Login) && string.Equals(row.ItemArray[6].ToString(), user.Password.GetHashCode().ToString()))
                     {
                         return true;
                     }
@@ -286,7 +288,7 @@ namespace Software_Accounting_Client_
                     logo.ParameterName = "@logo";
                     logo.NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Bytea;
                     logo.Value = ImageByteA.GetImageBytes(soft.LogoPath);
-                    cmd.Parameters.AddWithValue(logo.ParameterName, logo.Value);
+                    cmd.Parameters.AddWithValue(logo.ParameterName, (byte[])logo.Value);
                 }
                 cmd.Parameters.AddWithValue("@name", soft.Name);
                 cmd.Parameters.AddWithValue("@version", soft.Version);
@@ -408,6 +410,51 @@ namespace Software_Accounting_Client_
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        /// <summary>
+        /// Делает SQL запрос на получение данных из поля logo из таблицы Software и возвращает объект PictureBox
+        /// </summary>
+        /// <returns>PictureBox</returns>
+        public PictureBox GetImageByteA(int id)
+        {
+            PictureBox result = new PictureBox();
+            string sql = "SELECT logo FROM \"Software\" WHERE id = @id";
+
+            try
+            {
+                NpgsqlDataSource dataSource = NpgsqlDataSource.Create(ConnectionString);
+                NpgsqlCommand cmd = dataSource.CreateCommand(sql);
+                cmd.Parameters.AddWithValue("@id", id);
+
+                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(cmd);
+
+                using (NpgsqlDataReader reader = dataAdapter.SelectCommand.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            MessageBox.Show(((byte[])reader["logo"]).Length.ToString());
+                            ms.Position = 0;
+                            ms.Read((byte[])reader["logo"], 0, ((byte[])reader["logo"]).Length);
+                            byte[] msb = ms.ToArray();
+                            MessageBox.Show(ms.Length.ToString());
+                            for (int i = 0; i < msb.Length; i++)
+                            {
+                                MessageBox.Show(msb[i].ToString());
+                            }
+                            result.Image = Image.FromStream(ms);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " " + ex.Source + " " + ex.TargetSite);
+            }
+
+            return result;
         }
 
         /// <summary>

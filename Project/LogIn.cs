@@ -25,23 +25,14 @@ namespace Software_Accounting_Client_
             InitializeComponent();
         }
 
-        // Создает нового пользователя и возвращает объект User
+        // Получает данные текущего пользователя и возвращает объект User
         private User GetUser()
         {
-            if (SurnameTextBox.Text.Length != 0 && NameTextBox.Text.Length != 0 && MiddlenameTextBox.Text.Length != 0 && PasswordTextBox.Text.Length != 0 
-                && RoleTextBox.Text.Length != 0)
+            if (LoginTextBox.Text.Length != 0 && PasswordTextBox.Text.Length != 0)
             {
-                if (!string.Equals(RoleTextBox.Text.ToLower(), "user") && !string.Equals(RoleTextBox.Text.ToLower(), "admin"))
-                {
-                    MessageBox.Show("Поле \"Роль\" должно содеражть значение \"user/admin\"");
-                    return null;
-                }
                 User user = new User();
-                user.Surname = SurnameTextBox.Text;
-                user.Name = NameTextBox.Text;
-                user.Middlename = MiddlenameTextBox.Text;
+                user.Login = LoginTextBox.Text;
                 user.Password = PasswordTextBox.Text;
-                user.Role = RoleTextBox.Text;
                 return user;
             }
             return null;
@@ -74,17 +65,31 @@ namespace Software_Accounting_Client_
             }
             if (DataBase.IsExists(user))
             {
-                MessageBox.Show("Вход выполнен");
-                if (string.Equals(RoleTextBox.Text, "user"))
+                DataSet ds = DataBase.GetTable("User");
+                foreach (DataRow row in ds.Tables[0].Rows)
                 {
+                    if (string.Equals(row.ItemArray[7].ToString(), user.Login))
+                    {
+                        user.Surname = row.ItemArray[1].ToString();
+                        user.Name = row.ItemArray[2].ToString();
+                        user.Middlename = row.ItemArray[3].ToString();
+                        user.Role = row.ItemArray[4].ToString();
+                    }
+                }
+
+                MessageBox.Show("Вход выполнен");
+                if (string.Equals(user.Role, "user"))
+                {
+                    CloseConnection();
                     Role.CurrentRole = "user";
-                    ClientForm client = new ClientForm(SurnameTextBox.Text + " " + NameTextBox.Text + " " + MiddlenameTextBox.Text);
+                    ClientForm client = new ClientForm(user.Surname + " " + user.Name + " " + user.Middlename);
                     client.Show();
                 }
                 else
                 {
+                    CloseConnection();
                     Role.CurrentRole = "admin";
-                    AdminForm admin = new AdminForm(SurnameTextBox.Text + " " + NameTextBox.Text + " " + MiddlenameTextBox.Text);
+                    AdminForm admin = new AdminForm(user.Surname + " " + user.Name + " " + user.Middlename);
                     admin.Show();
                 }
             }
@@ -94,13 +99,19 @@ namespace Software_Accounting_Client_
             }
         }
 
-        // Возникает при закрытии формы. Событие закрывает подключение к базе данных
-        private void LogIn_FormClosed(object sender, FormClosedEventArgs e)
+        // Закрывает подключение к базе данных
+        private void CloseConnection()
         {
             if (DataBase != null)
             {
                 DataBase.Disconnect();
             }
+        }
+
+        // Возникает при закрытии формы. Событие закрывает подключение к базе данных
+        private void LogIn_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            CloseConnection();
         }
     }
 }

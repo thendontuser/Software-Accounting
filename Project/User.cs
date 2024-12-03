@@ -37,6 +37,11 @@ namespace Software_Accounting_Client_
         public string Role { get; set; }
 
         /// <summary>
+        /// Логин пользователя
+        /// </summary>
+        public string Login {  get; set; }
+
+        /// <summary>
         /// Идентификатор компьютера, за которым пользователь может работать
         /// </summary>
         public int IdDevice { get; set; }

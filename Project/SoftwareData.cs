@@ -32,14 +32,6 @@ namespace Software_Accounting_Client_
             dataGridView1.DataSource = DataBase.GetTable("Software").Tables[0];
         }
 
-        private void SoftwareData_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (DataBase != null)
-            {
-                DataBase.Disconnect();
-            }
-        }
-
         private void EditBtn_Click(object sender, EventArgs e)
         {
             if (string.Equals(Role.CurrentRole, "user"))
@@ -55,6 +47,21 @@ namespace Software_Accounting_Client_
         {
             MessageBox.Show("Значение столбца равно null");
             this.Close();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+            ImageContentForm imageContentForm = new ImageContentForm(DataBase.GetImageByteA(id));
+            imageContentForm.Show();
+        }
+
+        private void SoftwareData_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (DataBase != null)
+            {
+                DataBase.Disconnect();
+            }
         }
     }
 }

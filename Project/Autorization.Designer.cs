@@ -35,13 +35,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.MiddlenameTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.RoleTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.AutorizeBtn = new System.Windows.Forms.Button();
             this.IdDeviceTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.LoginTextBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.UserRB = new System.Windows.Forms.RadioButton();
+            this.AdminRB = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // label1
@@ -95,18 +98,11 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Отчество";
             // 
-            // RoleTextBox
-            // 
-            this.RoleTextBox.Location = new System.Drawing.Point(147, 350);
-            this.RoleTextBox.Name = "RoleTextBox";
-            this.RoleTextBox.Size = new System.Drawing.Size(255, 22);
-            this.RoleTextBox.TabIndex = 7;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(245, 318);
+            this.label4.Location = new System.Drawing.Point(241, 556);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 29);
             this.label4.TabIndex = 6;
@@ -114,7 +110,7 @@
             // 
             // PasswordTextBox
             // 
-            this.PasswordTextBox.Location = new System.Drawing.Point(149, 431);
+            this.PasswordTextBox.Location = new System.Drawing.Point(142, 427);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(255, 22);
@@ -124,7 +120,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(234, 399);
+            this.label5.Location = new System.Drawing.Point(227, 395);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(96, 29);
             this.label5.TabIndex = 8;
@@ -133,7 +129,7 @@
             // AutorizeBtn
             // 
             this.AutorizeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AutorizeBtn.Location = new System.Drawing.Point(175, 560);
+            this.AutorizeBtn.Location = new System.Drawing.Point(175, 652);
             this.AutorizeBtn.Name = "AutorizeBtn";
             this.AutorizeBtn.Size = new System.Drawing.Size(208, 50);
             this.AutorizeBtn.TabIndex = 10;
@@ -143,7 +139,7 @@
             // 
             // IdDeviceTextBox
             // 
-            this.IdDeviceTextBox.Location = new System.Drawing.Point(149, 511);
+            this.IdDeviceTextBox.Location = new System.Drawing.Point(142, 515);
             this.IdDeviceTextBox.Name = "IdDeviceTextBox";
             this.IdDeviceTextBox.Size = new System.Drawing.Size(255, 22);
             this.IdDeviceTextBox.TabIndex = 12;
@@ -152,23 +148,65 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(188, 479);
+            this.label6.Location = new System.Drawing.Point(181, 483);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(185, 29);
             this.label6.TabIndex = 11;
             this.label6.Text = "ID компьютера";
             // 
+            // LoginTextBox
+            // 
+            this.LoginTextBox.Location = new System.Drawing.Point(142, 340);
+            this.LoginTextBox.Name = "LoginTextBox";
+            this.LoginTextBox.Size = new System.Drawing.Size(255, 22);
+            this.LoginTextBox.TabIndex = 14;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(227, 308);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(82, 29);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Логин";
+            // 
+            // UserRB
+            // 
+            this.UserRB.AutoSize = true;
+            this.UserRB.Location = new System.Drawing.Point(212, 604);
+            this.UserRB.Name = "UserRB";
+            this.UserRB.Size = new System.Drawing.Size(57, 20);
+            this.UserRB.TabIndex = 15;
+            this.UserRB.TabStop = true;
+            this.UserRB.Text = "User";
+            this.UserRB.UseVisualStyleBackColor = true;
+            // 
+            // AdminRB
+            // 
+            this.AdminRB.AutoSize = true;
+            this.AdminRB.Location = new System.Drawing.Point(275, 604);
+            this.AdminRB.Name = "AdminRB";
+            this.AdminRB.Size = new System.Drawing.Size(66, 20);
+            this.AdminRB.TabIndex = 16;
+            this.AdminRB.TabStop = true;
+            this.AdminRB.Text = "Admin";
+            this.AdminRB.UseVisualStyleBackColor = true;
+            // 
             // Autorization
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(565, 622);
+            this.ClientSize = new System.Drawing.Size(565, 714);
+            this.Controls.Add(this.AdminRB);
+            this.Controls.Add(this.UserRB);
+            this.Controls.Add(this.LoginTextBox);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.IdDeviceTextBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.AutorizeBtn);
             this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.RoleTextBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.MiddlenameTextBox);
             this.Controls.Add(this.label3);
@@ -195,12 +233,15 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox MiddlenameTextBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox RoleTextBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox PasswordTextBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button AutorizeBtn;
         private System.Windows.Forms.TextBox IdDeviceTextBox;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox LoginTextBox;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.RadioButton UserRB;
+        private System.Windows.Forms.RadioButton AdminRB;
     }
 }

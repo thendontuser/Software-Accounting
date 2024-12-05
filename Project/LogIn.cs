@@ -32,7 +32,7 @@ namespace Software_Accounting_Client_
             {
                 User user = new User();
                 user.Login = LoginTextBox.Text;
-                user.Password = PasswordTextBox.Text;
+                user.Password = PasswordTextBox.Text.GetHashCode().ToString();
                 return user;
             }
             return null;
@@ -81,14 +81,12 @@ namespace Software_Accounting_Client_
                 if (string.Equals(user.Role, "user"))
                 {
                     CloseConnection();
-                    Role.CurrentRole = "user";
                     ClientForm client = new ClientForm(user.Surname + " " + user.Name + " " + user.Middlename);
                     client.Show();
                 }
                 else
                 {
                     CloseConnection();
-                    Role.CurrentRole = "admin";
                     AdminForm admin = new AdminForm(user.Surname + " " + user.Name + " " + user.Middlename);
                     admin.Show();
                 }

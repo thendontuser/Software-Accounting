@@ -113,6 +113,11 @@ namespace Software_Accounting_Client_
                 MessageBox.Show("Заявка не выбрана");
                 return;
             }
+            else if (RequestTable.SelectedRows.Count > 1)
+            {
+                MessageBox.Show("Выберите только одну заявку");
+                return;
+            }
 
             Software software = new Software();
             DataSet ds = new DataSet();
@@ -123,7 +128,7 @@ namespace Software_Accounting_Client_
             {
                 if (string.Equals(row.ItemArray[1].ToString(), RequestTable.SelectedRows[0].Cells[0].Value.ToString()))
                 {
-                    software.Id = Convert.ToInt32(row.ItemArray[0].ToString());
+                    software.Name = row.ItemArray[1].ToString();
                     break;
                 }
             }
@@ -150,7 +155,7 @@ namespace Software_Accounting_Client_
                 }
             }
 
-            if (DataBase.IsExists(software))
+            if (DataBase.IsExists(software, false))
             {
                 MessageBox.Show("Данное ПО уже установлено на указанном компьютере");
                 return;

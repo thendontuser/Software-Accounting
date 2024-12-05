@@ -93,7 +93,7 @@ namespace Software_Accounting_Client_
 
                 foreach (DataRow row in dataSet.Tables[0].Rows)
                 {
-                    if (string.Equals(row.ItemArray[7].ToString(), user.Login) && string.Equals(row.ItemArray[6].ToString(), user.Password.GetHashCode().ToString()))
+                    if (string.Equals(row.ItemArray[7].ToString(), user.Login) && string.Equals(row.ItemArray[6].ToString(), user.Password.ToString()))
                     {
                         return true;
                     }
@@ -112,7 +112,7 @@ namespace Software_Accounting_Client_
         /// </summary>
         /// <param name="software"></param>
         /// <returns>true, если ПО существует в таблице, иначе false</returns>
-        public bool IsExists(Software software)
+        public bool IsExists(Software software, bool isFull)
         {
             string sql = "SELECT * FROM \"Software\";";
             try
@@ -121,10 +121,82 @@ namespace Software_Accounting_Client_
                 DataSet dataSet = new DataSet();
                 adapter.Fill(dataSet);
 
+                if (!isFull)
+                {
+                    foreach (DataRow row in dataSet.Tables[0].Rows)
+                    {
+                        if (string.Equals(row.ItemArray[1].ToString(), software.Name) && string.Equals(row.ItemArray[6].ToString(), software.IdDevice.ToString())
+                            && string.Equals(row.ItemArray[7].ToString(), software.IdDeveloper.ToString()))
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+
                 foreach (DataRow row in dataSet.Tables[0].Rows)
                 {
-                    if (Convert.ToInt32(row.ItemArray[0].ToString()) == software.Id && Convert.ToInt32(row.ItemArray[6].ToString()) == software.IdDevice
-                        && Convert.ToInt32(row.ItemArray[7].ToString()) == software.IdDeveloper)
+                    if (string.Equals(row.ItemArray[1].ToString(), software.Name) && string.Equals(row.ItemArray[6].ToString(), software.IdDevice.ToString()))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Ищет разработчиков в системе
+        /// </summary>
+        /// <param name="developer"></param>
+        /// <returns></returns>
+        public bool IsExists(Developer developer)
+        {
+            string sql = "SELECT * FROM \"Developer\";";
+            try
+            {
+                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(sql, ConnectionString);
+                DataSet dataSet = new DataSet();
+                adapter.Fill(dataSet);
+
+                foreach (DataRow row in dataSet.Tables[0].Rows)
+                {
+                    if (string.Equals(row.ItemArray[1].ToString(), developer.Name))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Ишет устройства в системе
+        /// </summary>
+        /// <param name="device"></param>
+        /// <returns></returns>
+        public bool IsExists(Device device)
+        {
+            string sql = "SELECT * FROM \"Device\";";
+            try
+            {
+                NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(sql, ConnectionString);
+                DataSet dataSet = new DataSet();
+                adapter.Fill(dataSet);
+
+                foreach (DataRow row in dataSet.Tables[0].Rows)
+                {
+                    if (string.Equals(row.ItemArray[3].ToString(), device.IPAddress))
                     {
                         return true;
                     }
@@ -416,7 +488,7 @@ namespace Software_Accounting_Client_
         /// Делает SQL запрос на получение данных из поля logo из таблицы Software и возвращает объект PictureBox
         /// </summary>
         /// <returns>PictureBox</returns>
-        public PictureBox GetImageByteA(int id)
+        public Image GetImageByteA(int id)
         {
             PictureBox result = new PictureBox();
             string sql = "SELECT logo FROM \"Software\" WHERE id = @id";
@@ -435,15 +507,9 @@ namespace Software_Accounting_Client_
                     {
                         using (MemoryStream ms = new MemoryStream())
                         {
-                            MessageBox.Show(((byte[])reader["logo"]).Length.ToString());
                             ms.Position = 0;
                             ms.Read((byte[])reader["logo"], 0, ((byte[])reader["logo"]).Length);
                             byte[] msb = ms.ToArray();
-                            MessageBox.Show(ms.Length.ToString());
-                            for (int i = 0; i < msb.Length; i++)
-                            {
-                                MessageBox.Show(msb[i].ToString());
-                            }
                             result.Image = Image.FromStream(ms);
                         }
                     }
@@ -454,7 +520,7 @@ namespace Software_Accounting_Client_
                 MessageBox.Show(ex.Message + " " + ex.Source + " " + ex.TargetSite);
             }
 
-            return result;
+            return result.Image;
         }
 
         /// <summary>

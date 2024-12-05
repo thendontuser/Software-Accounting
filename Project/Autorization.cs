@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,18 +26,44 @@ namespace Software_Accounting_Client_
             InitializeComponent();
         }
 
+        private void Autorization_Load(object sender, EventArgs e)
+        {
+            DataBase = new DataBase(DBSettings.ConnectionString);
+
+            if (DataBase.Connect() == -1)
+            {
+                return;
+            }
+
+            List<string> items = new List<string>();
+
+            DataSet ds = DataBase.GetTable("Device");
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                items.Add(row.ItemArray[0].ToString() + ", " + row.ItemArray[1].ToString());
+            }
+            DeviceBox.Items.AddRange(items.ToArray());
+        }
+
+        // Возвращает уникальный номер устройства
+        private int GetDeviceNumber()
+        {
+            string[] items = DeviceBox.Text.Split(',');
+            return Convert.ToInt32(items[0]);
+        }
+
         // Создает нового пользователя и возвращает объект User
         private User GetUser()
         {
             if (SurnameTextBox.Text.Length != 0 && NameTextBox.Text.Length != 0 && MiddlenameTextBox.Text.Length != 0 && (UserRB.Checked || AdminRB.Checked) && 
-                IdDeviceTextBox.Text.Length != 0 && PasswordTextBox.Text.Length != 0 && LoginTextBox.Text.Length != 0)
+                DeviceBox.Text.Length != 0 && PasswordTextBox.Text.Length != 0 && LoginTextBox.Text.Length != 0)
             {
                 User user = new User();
                 user.Surname = SurnameTextBox.Text;
                 user.Name = NameTextBox.Text;
                 user.Middlename = MiddlenameTextBox.Text;
                 user.Role = UserRB.Checked ? "user" : "admin";
-                user.IdDevice = Convert.ToInt32(IdDeviceTextBox.Text);
+                user.IdDevice = GetDeviceNumber();
                 user.Password = PasswordTextBox.Text;
                 user.Login = LoginTextBox.Text;
                 return user;
@@ -47,13 +74,6 @@ namespace Software_Accounting_Client_
         // Возникает при нажатии на кнопку "Авторизация". Событие проверяет на корректность все введенные поля и заносит нового пользователя в базу данных
         private void AutorizeBtn_Click(object sender, EventArgs e)
         {
-            DataBase = new DataBase(DBSettings.ConnectionString);
-
-            if (DataBase.Connect() == -1)
-            {
-                return;
-            }
-
             User user = GetUser();
 
             if (user == null)

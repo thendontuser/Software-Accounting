@@ -39,12 +39,12 @@
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.AutorizeBtn = new System.Windows.Forms.Button();
-            this.IdDeviceTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.LoginTextBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.UserRB = new System.Windows.Forms.RadioButton();
             this.AdminRB = new System.Windows.Forms.RadioButton();
+            this.DeviceBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -137,22 +137,15 @@
             this.AutorizeBtn.UseVisualStyleBackColor = true;
             this.AutorizeBtn.Click += new System.EventHandler(this.AutorizeBtn_Click);
             // 
-            // IdDeviceTextBox
-            // 
-            this.IdDeviceTextBox.Location = new System.Drawing.Point(142, 515);
-            this.IdDeviceTextBox.Name = "IdDeviceTextBox";
-            this.IdDeviceTextBox.Size = new System.Drawing.Size(255, 22);
-            this.IdDeviceTextBox.TabIndex = 12;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(181, 483);
+            this.label6.Location = new System.Drawing.Point(207, 483);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(185, 29);
+            this.label6.Size = new System.Drawing.Size(148, 29);
             this.label6.TabIndex = 11;
-            this.label6.Text = "ID компьютера";
+            this.label6.Text = "Устройство";
             // 
             // LoginTextBox
             // 
@@ -193,16 +186,25 @@
             this.AdminRB.Text = "Admin";
             this.AdminRB.UseVisualStyleBackColor = true;
             // 
+            // DeviceBox
+            // 
+            this.DeviceBox.FormattingEnabled = true;
+            this.DeviceBox.Location = new System.Drawing.Point(142, 515);
+            this.DeviceBox.Name = "DeviceBox";
+            this.DeviceBox.Size = new System.Drawing.Size(255, 24);
+            this.DeviceBox.Sorted = true;
+            this.DeviceBox.TabIndex = 17;
+            // 
             // Autorization
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(565, 714);
+            this.Controls.Add(this.DeviceBox);
             this.Controls.Add(this.AdminRB);
             this.Controls.Add(this.UserRB);
             this.Controls.Add(this.LoginTextBox);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.IdDeviceTextBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.AutorizeBtn);
             this.Controls.Add(this.PasswordTextBox);
@@ -220,6 +222,7 @@
             this.Name = "Autorization";
             this.Text = "Авторизация";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Autorization_FormClosed);
+            this.Load += new System.EventHandler(this.Autorization_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,11 +240,11 @@
         private System.Windows.Forms.TextBox PasswordTextBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button AutorizeBtn;
-        private System.Windows.Forms.TextBox IdDeviceTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox LoginTextBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.RadioButton UserRB;
         private System.Windows.Forms.RadioButton AdminRB;
+        private System.Windows.Forms.ComboBox DeviceBox;
     }
 }

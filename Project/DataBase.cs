@@ -233,24 +233,45 @@ namespace Software_Accounting_Client_
         }
 
         /// <summary>
-        /// Заносит данные заявки в таблицу Request
+        /// Редактирует данные заявки в таблице Request в зависимости от значения команды
         /// </summary>
-        public void AddRequest(Request request)
+        public void EditRequest(Request request, SqlCommand sqlCmd)
         {
-            string sql = "INSERT INTO \"Request\"(id_software, id_developer, id_device, \"SNM\") VALUES (@id_soft, @id_dev, @id_device, @snm);";
-            try
+            string sql = string.Empty;
+            NpgsqlDataSource dataSource = NpgsqlDataSource.Create(ConnectionString);
+            NpgsqlCommand cmd;
+
+            switch (sqlCmd)
             {
-                NpgsqlDataSource dataSource = NpgsqlDataSource.Create(ConnectionString);
-                NpgsqlCommand cmd = dataSource.CreateCommand(sql);
-                cmd.Parameters.AddWithValue("@id_soft", request.IdSoftware);
-                cmd.Parameters.AddWithValue("@id_dev", request.IdDeveloper);
-                cmd.Parameters.AddWithValue("@id_device", request.IdDevice);
-                cmd.Parameters.AddWithValue("@snm", request.SNM);
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                case SqlCommand.INSERT:
+                    sql = "INSERT INTO \"Request\"(id_software, id_developer, id_device, \"SNM\") VALUES (@id_soft, @id_dev, @id_device, @snm);";
+                    try
+                    {
+                        cmd = dataSource.CreateCommand(sql);
+                        cmd.Parameters.AddWithValue("@id_soft", request.IdSoftware);
+                        cmd.Parameters.AddWithValue("@id_dev", request.IdDeveloper);
+                        cmd.Parameters.AddWithValue("@id_device", request.IdDevice);
+                        cmd.Parameters.AddWithValue("@snm", request.SNM);
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    break;
+                case SqlCommand.DELETE:
+                    sql = "DELETE FROM \"Request\" WHERE id = @id";
+                    try
+                    {
+                        cmd = dataSource.CreateCommand(sql);
+                        cmd.Parameters.AddWithValue("@id", request.Id);
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    break;
             }
         }
 

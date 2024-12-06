@@ -207,8 +207,8 @@ namespace Software_Accounting_Client_
                 LicenseBegin = LicenseBeginTextBox.Text,
                 LicenseEnd = LicenseEndTextBox.Text,
                 IdDeveloper = GetDeveloperId(),
-                IdDevice = GetDeviceId()
-                //LogoPath = LogoTextBox.Text,
+                IdDevice = GetDeviceId(),
+                LogoPath = LogoTextBox.Text,
             };
 
             if (DataBase.IsExists(software, true))
@@ -255,8 +255,8 @@ namespace Software_Accounting_Client_
                 LicenseBegin = LicenseBeginTextBox.Text,
                 LicenseEnd = LicenseEndTextBox.Text,
                 IdDeveloper = GetDeveloperId(),
-                IdDevice = GetDeviceId()
-                //LogoPath = LogoTextBox.Text,
+                IdDevice = GetDeviceId(),
+                LogoPath = LogoTextBox.Text
             };
 
             DataBase.EditSoftware(software, SqlCommand.UPDATE);

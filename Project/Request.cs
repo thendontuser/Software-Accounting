@@ -12,6 +12,11 @@ namespace Software_Accounting_Client_
     internal class Request
     {
         /// <summary>
+        /// Идентификатор заявки
+        /// </summary>
+        public int Id;
+
+        /// <summary>
         /// Идентификатор ПО
         /// </summary>
         public int IdSoftware {  get; set; }

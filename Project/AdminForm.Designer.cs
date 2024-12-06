@@ -44,6 +44,7 @@
             this.developersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.devicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.RequestTable)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -177,11 +178,23 @@
             this.usersToolStripMenuItem.Text = "Пользователи";
             this.usersToolStripMenuItem.Click += new System.EventHandler(this.usersToolStripMenuItem_Click);
             // 
+            // DeleteBtn
+            // 
+            this.DeleteBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DeleteBtn.Location = new System.Drawing.Point(284, 647);
+            this.DeleteBtn.Name = "DeleteBtn";
+            this.DeleteBtn.Size = new System.Drawing.Size(262, 52);
+            this.DeleteBtn.TabIndex = 5;
+            this.DeleteBtn.Text = "Удалить заявку";
+            this.DeleteBtn.UseVisualStyleBackColor = true;
+            this.DeleteBtn.Click += new System.EventHandler(this.DeleteBtn_Click);
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1165, 711);
+            this.Controls.Add(this.DeleteBtn);
             this.Controls.Add(this.CheckSoft);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.RequestTable);
@@ -220,5 +233,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DeviceColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn SNMColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn StateColumn;
+        private System.Windows.Forms.Button DeleteBtn;
     }
 }

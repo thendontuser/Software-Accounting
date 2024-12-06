@@ -30,6 +30,12 @@ namespace Software_Accounting_Client_
             {
                 return;
             }
+            InitTable();
+        }
+
+        private void InitTable()
+        {
+            RequestTable.Rows.Clear();
 
             DataSet ds = DataBase.GetTable("Request");
             foreach (DataRow row in ds.Tables[0].Rows)
@@ -104,6 +110,34 @@ namespace Software_Accounting_Client_
             userData.Show();
         }
 
+        // Возвращает id разработчика из выбранной строке в DataGridView
+        private int GetDeveloperId()
+        {
+            DataSet ds = DataBase.GetTable("Developer");
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                if (string.Equals(row.ItemArray[1].ToString(), RequestTable.SelectedRows[0].Cells[1].Value.ToString()))
+                {
+                    return Convert.ToInt32(row.ItemArray[0].ToString());
+                }
+            }
+            return -1;
+        }
+
+        // Возвращает id устройства из выбранной строке в DataGridView
+        private int GetDeviceId()
+        {
+            DataSet ds = DataBase.GetTable("Device");
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                if (string.Equals(row.ItemArray[1].ToString(), RequestTable.SelectedRows[0].Cells[2].Value.ToString()))
+                {
+                    return Convert.ToInt32(row.ItemArray[0].ToString());
+                }
+            }
+            return -1;
+        }
+
         // Обработчик нажатия кнопки анализа заявки. Метод проверяет, есть ли указанное в заявке ПО на конкретном компьютере, а также идет анализ
         // системных требований
         private void CheckSoft_Click(object sender, EventArgs e)
@@ -122,7 +156,7 @@ namespace Software_Accounting_Client_
             Software software = new Software();
             DataSet ds = new DataSet();
 
-            // Получение ID ПО
+            // Получение имени ПО
             ds = DataBase.GetTable("Software");
             foreach (DataRow row in ds.Tables[0].Rows)
             {
@@ -133,27 +167,8 @@ namespace Software_Accounting_Client_
                 }
             }
 
-            // Получение ID разработчика
-            ds = DataBase.GetTable("Developer");
-            foreach (DataRow row in ds.Tables[0].Rows)
-            {
-                if (string.Equals(row.ItemArray[1].ToString(), RequestTable.SelectedRows[0].Cells[1].Value.ToString()))
-                {
-                    software.IdDeveloper = Convert.ToInt32(row.ItemArray[0].ToString());
-                    break;
-                }
-            }
-
-            // Получение ID разработчика
-            ds = DataBase.GetTable("Device");
-            foreach (DataRow row in ds.Tables[0].Rows)
-            {
-                if (string.Equals(row.ItemArray[1].ToString(), RequestTable.SelectedRows[0].Cells[2].Value.ToString()))
-                {
-                    software.IdDevice = Convert.ToInt32(row.ItemArray[0].ToString());
-                    break;
-                }
-            }
+            software.IdDeveloper = GetDeveloperId();
+            software.IdDevice = GetDeviceId();
 
             if (DataBase.IsExists(software, false))
             {
@@ -190,6 +205,39 @@ namespace Software_Accounting_Client_
             }
 
             #endregion
+        }
+
+        private void DeleteBtn_Click(object sender, EventArgs e)
+        {
+            if (RequestTable.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Заявка не выбрана");
+                return;
+            }
+            else if (RequestTable.SelectedRows.Count > 1)
+            {
+                MessageBox.Show("Выберите только одну заявку");
+                return;
+            }
+
+            DataSet ds = DataBase.GetTable("Request");
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                string softName = string.Empty;
+
+                DataSet softwares = DataBase.GetTable("Software");
+                foreach (DataRow soft in softwares.Tables[0].Rows)
+                {
+                    if (string.Equals(soft.ItemArray[1].ToString(), RequestTable.SelectedRows[0].Cells[0].Value.ToString()))
+                    {
+                        if (Convert.ToInt32(row.ItemArray[1].ToString()) == Convert.ToInt32(soft.ItemArray[0].ToString()))
+                        {
+                            DataBase.EditRequest(new Request() { Id = Convert.ToInt32(row.ItemArray[0].ToString()) }, SqlCommand.DELETE);
+                        }
+                    }
+                }
+            }
+            InitTable();
         }
 
         private void AdminForm_FormClosed(object sender, FormClosedEventArgs e)

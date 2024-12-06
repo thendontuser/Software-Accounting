@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Software_Accounting_Client_
 {
     /// <summary>
-    /// Представляет функционал для работы типом bytea базы данных
+    /// Представляет функционал для работы с типом bytea базы данных
     /// </summary>
     internal static class ImageByteA
     {

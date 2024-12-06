@@ -111,7 +111,7 @@ namespace Software_Accounting_Client_
                 }
 
                 request.SNM = ClientName;
-                dataBase.AddRequest(request);
+                dataBase.EditRequest(request, SqlCommand.INSERT);
                 CurrentRequest = request;
                 dataBase.Disconnect();
                 MessageBox.Show("Заявка отправлена на рассмотрение");

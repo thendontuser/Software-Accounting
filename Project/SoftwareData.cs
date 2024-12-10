@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,7 +61,7 @@ namespace Software_Accounting_Client_
                 dataGridView1.Rows[index].Cells[4].Value = (row.ItemArray[5].ToString().Split(' '))[0];
                 dataGridView1.Rows[index].Cells[5].Value = developer;
                 dataGridView1.Rows[index].Cells[6].Value = device;
-                //dataGridView1.Rows[index].Cells[7].Value = DataBase.GetImageByteA(Convert.ToInt32(row.ItemArray[0].ToString()));
+                dataGridView1.Rows[index].Cells[7].Value = GetImage(row.ItemArray[8].ToString());
             }
         }
 
@@ -94,6 +95,27 @@ namespace Software_Accounting_Client_
                     }
                     DeviceBox.Items.AddRange(items.ToArray());
                     break;
+            }
+        }
+
+        /// <summary>
+        /// Возвращает изображение по указанному пути
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns>Image</returns>
+        public static Image GetImage(string path)
+        {
+            using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+            {
+                using (BinaryReader br = new BinaryReader(new BufferedStream(fs)))
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        fs.CopyTo(ms);
+                        ms.Position = 0;
+                        return Image.FromStream(ms);
+                    }
+                }
             }
         }
 

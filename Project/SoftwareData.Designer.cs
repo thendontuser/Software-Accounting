@@ -320,6 +320,7 @@
             // 
             // LogoColumn
             // 
+            this.LogoColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.LogoColumn.HeaderText = "Логотип";
             this.LogoColumn.MinimumWidth = 6;
             this.LogoColumn.Name = "LogoColumn";

@@ -145,7 +145,6 @@ namespace Software_Accounting_Client_
                 return;
             }
 
-            ReportTextBox.Clear();
             ReportTextBox.Text += "Отправитель: " + ClientName + "\n";
             ReportTextBox.Text += "Название ПО: " + data[0] + "\n";
             ReportTextBox.Text += "Разработчик: " + data[1] + "\n";

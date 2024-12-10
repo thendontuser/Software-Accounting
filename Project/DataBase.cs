@@ -371,18 +371,6 @@ namespace Software_Accounting_Client_
 
             try
             {
-                if (soft.LogoPath == null)
-                {
-                    cmd.Parameters.AddWithValue("@logo", ImageByteA.GetImageBytes(ImageByteA.WHITE_NOISE));
-                }
-                else
-                {
-                    NpgsqlParameter logo = new NpgsqlParameter();
-                    logo.ParameterName = "@logo";
-                    logo.NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Bytea;
-                    logo.Value = ImageByteA.GetImageBytes(soft.LogoPath);
-                    cmd.Parameters.AddWithValue(logo.ParameterName, (byte[])logo.Value);
-                }
                 cmd.Parameters.AddWithValue("@name", soft.Name);
                 cmd.Parameters.AddWithValue("@version", soft.Version);
                 cmd.Parameters.AddWithValue("@license", soft.License);
@@ -390,6 +378,7 @@ namespace Software_Accounting_Client_
                 cmd.Parameters.AddWithValue("@le", Convert.ToDateTime(soft.LicenseEnd));
                 cmd.Parameters.AddWithValue("@id_device", soft.IdDevice);
                 cmd.Parameters.AddWithValue("@id_dev", soft.IdDeveloper);
+                cmd.Parameters.AddWithValue("@logo", soft.LogoPath);
                 
                 cmd.ExecuteNonQuery();
             }
@@ -503,45 +492,6 @@ namespace Software_Accounting_Client_
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        /// <summary>
-        /// Делает SQL запрос на получение данных из поля logo из таблицы Software и возвращает объект PictureBox
-        /// </summary>
-        /// <returns>PictureBox</returns>
-        public Image GetImageByteA(int id)
-        {
-            PictureBox result = new PictureBox();
-            string sql = "SELECT logo FROM \"Software\" WHERE id = @id";
-
-            try
-            {
-                NpgsqlDataSource dataSource = NpgsqlDataSource.Create(ConnectionString);
-                NpgsqlCommand cmd = dataSource.CreateCommand(sql);
-                cmd.Parameters.AddWithValue("@id", id);
-
-                NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(cmd);
-
-                using (NpgsqlDataReader reader = dataAdapter.SelectCommand.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        using (MemoryStream ms = new MemoryStream())
-                        {
-                            ms.Position = 0;
-                            ms.Read((byte[])reader["logo"], 0, ((byte[])reader["logo"]).Length);
-                            byte[] msb = ms.ToArray();
-                            result.Image = Image.FromStream(ms);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + " " + ex.Source + " " + ex.TargetSite);
-            }
-
-            return result.Image;
         }
 
         /// <summary>

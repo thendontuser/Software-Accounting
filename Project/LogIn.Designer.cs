@@ -73,7 +73,7 @@
             this.AutorizeBtn.Name = "AutorizeBtn";
             this.AutorizeBtn.Size = new System.Drawing.Size(139, 39);
             this.AutorizeBtn.TabIndex = 7;
-            this.AutorizeBtn.Text = "Регситрация";
+            this.AutorizeBtn.Text = "Регистрация";
             this.AutorizeBtn.UseVisualStyleBackColor = true;
             this.AutorizeBtn.Click += new System.EventHandler(this.AutorizeBtn_Click);
             // 
